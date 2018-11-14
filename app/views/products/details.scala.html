@@ -1,0 +1,40 @@
+@(productForm: Form[Product])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Product form") {
+<h2>Formulario de Producto</h2>
+@helper.form(action = routes.Products.save(), 'enctype -> "multipart/form-data") {
+<fieldset>
+    <legend>Producto (@productForm("name").valueOr("Nuevo"))</legend><br>
+    @helper.inputText(productForm("ean"), '_label -> "Número de Producto", '_help -> "Requerido")<br>
+    @helper.inputText(productForm("name"),'_label -> "Nombre", '_help -> "Requerido")<br>
+    @helper.textarea(productForm("description"), '_label -> "Descripción", '_help -> "Max 500")<br>
+
+    <h0>Selecione Insumos:</h0>
+    <h0>  </h0><br>
+    <h0>  </h0><br>
+
+    <div class="control-group">
+        <div class="controls">
+            <input name="insumos[0].id" value="1" type="checkbox"
+                   @for(i <- 0 to 2) {
+            @if(productForm("insumos[" + i + "].id").value=="1"){ checked }
+            }> lightweight
+            <input name="insumos[1].id" value="2" type="checkbox"
+                   @for(i <- 0 to 2) {
+            @if(productForm("insumos[" + i + "].id").value=="2"){ checked }
+            }> metal
+            <input name="insumos[2].id" value="3" type="checkbox"
+                   @for(i <- 0 to 2) {
+            @if(productForm("insumos[" + i + "].id").value=="3"){ checked }
+            }> plastic
+        </div>
+        <h0>  </h0><br>
+
+    </div>
+</fieldset>
+<input type="submit" class="btn btn-primary" value="Guardar">
+<a class="btn" href="@routes.Products.index()">Cancelar</a>
+}
+}

@@ -1,0 +1,22 @@
+@(ventaForm: Form[Venta], productos: List[Product])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Venta") {
+<h2>Generar Nueva Venta</h2>
+<td>@productos</td>
+@helper.form(action = routes.Ventas.save(), 'enctype -> "multipart/form-data") {
+<fieldset>
+    <legend>Venta (@productos (name))</legend><br>
+    @helper.inputText(ventaForm("comprador"),'_label -> "Ingrese Nombre de Comprador", '_help -> "Requerido")<br>
+    @helper.inputText(ventaForm("cantidad"), '_label -> "Cantidad", '_help -> "Requerido")<br>
+
+
+
+</fieldset>
+<input type="hidden" name="product.id" value="2"> @*//esto te tendria que asignar un prodcuto de id 2 a la venta. si funciona hacer que use el prodcuto que esta en el formulariook*@
+<input type="submit" class="btn btn-primary" value="Confirmar Venta">
+<a class="btn" href="@routes.Products.index()">Cancelar</a>
+}
+}

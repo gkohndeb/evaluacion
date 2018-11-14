@@ -1,0 +1,7 @@
+.contenedor-botones{
+    display: flex;
+    justify-content: flex-start;
+}
+.new{
+    margin-left: auto;
+}

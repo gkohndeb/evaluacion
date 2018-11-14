@@ -1,0 +1,13 @@
+insumos:
+
+    - !!models.Insumo
+        id:         1
+        name:       lightweight
+
+    - !!models.Insumo
+        id:         2
+        name:       metal
+
+    - !!models.Insumo
+        id:         3
+        name:       plastic
