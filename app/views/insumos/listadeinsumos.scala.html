@@ -1,0 +1,52 @@
+@(insumos: List[Insumo])
+@main("Insumos catalogue") {
+
+<h2>Todos los Insumos</h2>
+
+<script>
+     function del(urlToDelete) {
+        $.ajax({
+          url: urlToDelete,
+          type: 'DELETE',
+          success: function(results) {
+            // Refresh the page
+            location.reload();
+          }
+        });
+      }
+   </script>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(insumo <- insumos) {
+
+    <tr>
+        <td><a href="@routes.Insumos.details(insumo)">@insumo.id</a></td>
+        <td><a href="@routes.Insumos.details(insumo)">@insumo.name</a></td>
+        <td><a href="@routes.Insumos.details(insumo)">@insumo.cantidad</a></td>
+        <td>
+            <a href="@routes.Insumos.details(insumo)"><i class="icon icon-pencil"></i></a>
+            <a onclick="javascript:del('@routes.Insumos.delete(insumo.id)')">Borrar   <i class="icon icon-trash"></i></a>
+        </td>
+    </tr>
+    }
+
+    </tbody>
+</table>
+
+<div class="contenedor-botones">
+
+    <a href="@routes.Insumos.newInsumo()" class="btn btn-primary"><i class="icon-plus"></i>Nuevo Insumo</a>
+
+    <a href="@routes.Products.list()" class="btn btn-primary new"><i class="icon-plus"></i>Volver</a>
+
+</div>
+}

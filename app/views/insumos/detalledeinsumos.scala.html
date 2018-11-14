@@ -1,0 +1,19 @@
+@(insumoForm: Form[Insumo])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Formulario de Insumo") {
+<h2>Edicion del Insumo</h2>
+@helper.form(action = routes.Insumos.save(), 'enctype -> "multipart/form-data") {
+<fieldset>
+    <legend>Insumo (@insumoForm("name").valueOr("Nuevo"))</legend><br>
+    @helper.inputText(insumoForm("id"), '_label -> "Número de Producto", '_help -> "Requerido")<br>
+    @helper.inputText(insumoForm("name"),'_label -> "Nombre", '_help -> "Requerido")<br>
+    @helper.inputText(insumoForm("cantidad"), '_label -> "Cantidad", '_help -> "Ingrese Cantidad")<br>
+
+
+</fieldset>
+<input type="submit" class="btn btn-primary" value="Guardar">
+<a class="btn" href="@routes.Products.index()">Cancelar</a>
+}
+}

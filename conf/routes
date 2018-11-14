@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                             controllers.Products.index()
+GET         /products/                    controllers.Products.list()
+POST        /products/                    controllers.Products.save()
+GET         /products/new                 controllers.Products.newProduct()
+GET         /products/:ean                controllers.Products.details(ean: models.Product)
+DELETE      /products/:ean                controllers.Products.delete(ean: String)
+
+GET         /insumos/                     controllers.Insumos.list()
+GET         /insumos/new                  controllers.Insumos.newInsumo()
+POST        /insumos/                     controllers.Insumos.save()
+GET         /insumos/:id                  controllers.Insumos.details(id: models.Insumo)
+DELETE      /insumos/:id                  controllers.Insumos.delete(id: String)
+
+GET         /venta/                 controllers.Ventas.newVenta()
+POST        /venta/                   controllers.Ventas.save()
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
